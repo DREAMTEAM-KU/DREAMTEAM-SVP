@@ -1,0 +1,13 @@
+{
+  "name": "DREAMTEAM-SVP",
+  "version": "1.0.0",
+  "description": "TESA TOPGUN COMPETITION",
+  "main": "app.js",
+  "repository": "https://github.com/DREAMTEAM-KU/DREAMTEAM-SVP.git",
+  "author": "DREAMTEAM",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
