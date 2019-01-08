@@ -6,8 +6,13 @@
   "repository": "https://github.com/DREAMTEAM-KU/DREAMTEAM-SVP.git",
   "author": "DREAMTEAM",
   "license": "MIT",
+  "scripts": {
+    "dev": "node app.js",
+    "dev:nodemon": "nodemon app.js"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "fs": "^0.0.1-security"
   }
 }
