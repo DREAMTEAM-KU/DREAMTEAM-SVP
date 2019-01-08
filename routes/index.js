@@ -10,7 +10,7 @@ const {
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("api server");
+  res.send("DreamTeam api server");
 });
 
 router.get("/listUsers", (req, res) => {
