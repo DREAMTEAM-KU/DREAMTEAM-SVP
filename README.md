@@ -1,3 +1,5 @@
+# Dream Team
+
 # Task Server Programming
 
 ## Server IP 202.139.192.76
@@ -12,9 +14,9 @@
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | 1 | /listUsers | GET | Empty | แสดง Users ทั้งหมด | 1 | Done |
 | 2 | /showbyID/:id | GET | Empty | แสดงผล User ตาม id | 2 | Done |
-| 3 | /addUser | POST | JSON String | เพิ่ม User 1 คน | 1 | Pending |
-| 4 | /addMultiUser | POST | JSON String | เพิ่ม User กี่คนก็ได้ ซึ่ง id จะต้องรันต่อ กันไปเรื่อยๆ | 2 | Pending |
-| 5 | /deleteUser/:id | DELETE | Empty | ลบ User ตาม id | 1 | Pending |
+| 3 | /addUser | POST | JSON String | เพิ่ม User 1 คน | 1 | Done |
+| 4 | /addMultiUser | POST | JSON String | เพิ่ม User กี่คนก็ได้ ซึ่ง id จะต้องรันต่อ กันไปเรื่อยๆ | 2 | Done |
+| 5 | /deleteUser/:id | DELETE | Empty | ลบ User ตาม id | 1 | Done |
 
 ```2. นำ code ที่ทำเสร็จแล้วขึ้นไปบน GIT บน repo ที่ตั้งเป็นชื่อทีมได้ (1 คะแนน)```
 
