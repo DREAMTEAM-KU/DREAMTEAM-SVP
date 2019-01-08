@@ -48,7 +48,7 @@ router.delete("/deleteUser/:id", (req, res) => {
   const users = deleteUser(id);
 
   res.setHeader("Content-Type", "application/json");
-  res.end(users);
+  res.send(users);
 });
 
 module.exports = router;

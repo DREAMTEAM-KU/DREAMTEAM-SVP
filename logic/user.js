@@ -52,7 +52,9 @@ function addMultiUser(iusers) {
 }
 
 function deleteUser(id) {
-  const users = fs.readFileSync(db, "utf8");
+  const users = JSON.parse(fs.readFileSync(db, "utf8"));
+  const key = `user${id}`;
+  delete users[key];
   return users;
 }
 
