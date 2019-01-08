@@ -9,6 +9,15 @@ const {
 
 const router = express.Router();
 
+router.get(
+  "/.well-known/acme-challenge/9xzq1uedxIUYHBGi7MTn6Yj0R-q5ViGncO_5h5rRYmI",
+  (req, res) => {
+    res.send(
+      "9xzq1uedxIUYHBGi7MTn6Yj0R-q5ViGncO_5h5rRYmI.VyNDrb0AvC6QqN5Aj9kutqKxCVqRwlJX5qDUMwm3WaQ"
+    );
+  }
+);
+
 router.get("/", (req, res) => {
   res.send("DreamTeam api server");
 });
