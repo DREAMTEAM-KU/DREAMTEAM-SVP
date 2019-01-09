@@ -10,13 +10,19 @@ const PORT = process.env.PORT || 8080;
 
 // database connection
 var mongoose = require("mongoose");
-const collections = ["users"];
-const option = { auth: { user: "ziveso", password: "password" } };
 
-// fix this locally, setup env.
+// const collections = ["users"];
+// const option = { auth: { user: "ziveso", password: "password" } };
+
+// // fix this locally, setup env.
+// mongoose.connect(
+//   "mongodb://tesatopgun.thitgorn.com/TGR_2019",
+//   option
+// );
+
 mongoose.connect(
-  "mongodb://tesatopgun.thitgorn.com/TGR_2019",
-  option
+  "mongodb://localhost/hwData"
+  // option
 );
 
 var db = mongoose.connection;
