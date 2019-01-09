@@ -9,7 +9,7 @@ const { typetable } = require("./enum");
 async function receiveData(payload) {
   const data = await payloadDivider(payload);
   const jData = {
-    temp: binarySignConverter(hex2decimal(data["00"].data).toString(2)),
+    temp: binarySignConverter(hex2decimal(data["00"].data).toString(2)) / 10,
     teamID: hex2decimal(data["01"].data)
   };
   const result = await addData(jData)
