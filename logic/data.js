@@ -1,9 +1,17 @@
-function receiveData() {
-  return {};
+const { list } = require("../db/function/temperature");
+
+async function receiveData(data) {
+  return data;
 }
 
-function showData() {
-  return {};
+async function showData() {
+  try {
+    const data = await list();
+    console.log(data);
+    return data;
+  } catch (e) {
+    throw e;
+  }
 }
 
 function addData() {

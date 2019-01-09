@@ -10,13 +10,14 @@ const {
 
 const router = express.Router();
 
-router.post("/receiveData", (req, res) => {
-  const data = receiveData(req.body);
+router.post("/receiveData", async (req, res) => {
+  const data = await receiveData(req.body);
+  console.log(data.payload_hex)
   res.send(data);
 });
 
-router.get("/showData", (req, res) => {
-  const data = receiveData();
+router.get("/showData", async (req, res) => {
+  const data = await showData();
   res.send(data);
 });
 
