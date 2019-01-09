@@ -37,7 +37,8 @@ router.put("/editData/:teamID", async (req, res) => {
 });
 
 router.delete("/deleteData/:teamID", (req, res) => {
-  const data = deleteData();
+  const teamID = req.params.teamID;
+  const data = deleteData(teamID);
   res.send(data);
 });
 

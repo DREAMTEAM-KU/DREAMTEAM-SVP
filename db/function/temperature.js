@@ -19,7 +19,6 @@ async function insert(data) {
     };
     const temperature = new Temp(timeData);
     const result = await temperature.save();
-    console.log("database output", result);
     return result;
   } catch (e) {
     throw e;
@@ -32,18 +31,29 @@ async function update(teamID, editData) {
       ...editData,
       updatedDate: new Date()
     };
-    const result = await Temp.update({ teamID }, timeData);
+    const result = await Temp.updateMany({ teamID }, timeData)
+      .lean()
+      .exec();
     return result;
   } catch (e) {
     throw e;
   }
 }
 
-function deleteId(teamID) {}
+async function removeID(teamID) {
+  try {
+    const result = await Temp.deleteMany({ teamID })
+      .remove()
+      .exec();
+    return result;
+  } catch (e) {
+    throw e;
+  }
+}
 
 module.exports = {
   list,
   insert,
   update,
-  deleteId
+  removeID
 };

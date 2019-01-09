@@ -1,4 +1,4 @@
-const { list, insert, update } = require("../db/function/temperature");
+const { list, insert, update, removeID } = require("../db/function/temperature");
 
 async function receiveData(data) {
   return data;
@@ -32,8 +32,13 @@ async function editData(teamID, inputData) {
   }
 }
 
-function deleteData() {
-  return {};
+async function deleteData(teamID) {
+  try {
+    const data = await removeID(teamID)
+    return data
+  } catch(e) {
+    throw e
+  }
 }
 
 module.exports = {
