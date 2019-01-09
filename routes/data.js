@@ -12,6 +12,7 @@ const router = express.Router();
 
 router.post("/receiveData", async (req, res) => {
   const data = await receiveData(req.body);
+  console.log(req.body);
   res.send(data);
 });
 
