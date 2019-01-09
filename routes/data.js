@@ -11,8 +11,8 @@ const {
 const router = express.Router();
 
 router.post("/receiveData", async (req, res) => {
-  const data = await receiveData(req.body);
-  console.log(req.body);
+  const payloadHex = req.body.DevEUI_uplink.payload_hex;
+  const data = await receiveData(payloadHex);
   res.send(data);
 });
 
