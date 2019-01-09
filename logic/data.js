@@ -1,4 +1,4 @@
-const { list } = require("../db/function/temperature");
+const { list, insert, update } = require("../db/function/temperature");
 
 async function receiveData(data) {
   return data;
@@ -14,12 +14,22 @@ async function showData() {
   }
 }
 
-function addData() {
-  return {};
+async function addData(input) {
+  try {
+    const data = await insert(input);
+    return data;
+  } catch (e) {
+    throw e;
+  }
 }
 
-function editData() {
-  return {};
+async function editData(teamID, inputData) {
+  try {
+    const data = await update(teamID, inputData);
+    return data;
+  } catch (e) {
+    throw e;
+  }
 }
 
 function deleteData() {
