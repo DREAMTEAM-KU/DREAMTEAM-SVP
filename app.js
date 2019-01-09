@@ -12,18 +12,18 @@ const PORT = process.env.PORT || 8080;
 var mongoose = require("mongoose");
 
 // const collections = ["users"];
-// const option = { auth: { user: "ziveso", password: "password" } };
+const option = { auth: { user: "ziveso", password: "password" } };
 
-// // fix this locally, setup env.
-// mongoose.connect(
-//   "mongodb://tesatopgun.thitgorn.com/TGR_2019",
-//   option
-// );
-
+// fix this locally, setup env.
 mongoose.connect(
-  "mongodb://localhost/hwData"
-  // option
+  "mongodb://localhost/hwData",
+  option
 );
+
+// mongoose.connect(
+//   "mongodb://localhost/hwData"
+//   // option
+// );
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
