@@ -65,11 +65,11 @@ async function replyMsg(reply_token, msg) {
       messages: [
         {
           type: "text",
-          text: data.temperature.toString(10)
+          text: `Temperature ${data.temperature.toString(10)} °C`
         },
         {
           type: "text",
-          text: data.humidity.toString(10)
+          text: `Humidity ${data.humidity.toString(10)} %`
         },
         {
           type: "text",
