@@ -27,6 +27,7 @@ router.post("/webhook", async (req, res) => {
     msg = JSON.stringify(req.body.events[0]);
     replyBeacon(reply_token, msg);
   } else {
+    console.log("not bracon")
     replyMsg(reply_token, msg);
   }
   res.send();
@@ -49,6 +50,7 @@ function push(msg) {
 
 async function replyMsg(reply_token, msg) {
   let data = await getLatestData();
+  console.log("data", data)
   let replymsg = "";
   if (msg === "Admin_Mon") {
     msg = req.body.events[0].message.text;
@@ -70,8 +72,9 @@ async function replyMsg(reply_token, msg) {
       ]
     });
   }
+  console.log("replymsg", replymsg)
   curl("reply", replymsg);
-  return msg;
+  return replymsg;
 }
 
 async function replyBeacon(reply_token, msg) {
