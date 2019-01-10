@@ -1,9 +1,4 @@
-const {
-  list,
-  insert,
-  update,
-  removeID
-} = require("../db/function/temperature");
+const { list, insert, update, removeID, getLatestData } = require("../db/function/SensorData");
 const { typetable } = require("./enum");
 
 async function receiveData(payload) {
@@ -18,6 +13,15 @@ async function receiveData(payload) {
 async function showData() {
   try {
     const data = await list();
+    return data;
+  } catch (e) {
+    throw e;
+  }
+}
+
+async function showLatestData() {
+  try {
+    const data = await getLatestData();
     return data;
   } catch (e) {
     throw e;
@@ -149,5 +153,6 @@ module.exports = {
   showData,
   addData,
   editData,
-  deleteData
+  deleteData,
+  showLatestData
 };

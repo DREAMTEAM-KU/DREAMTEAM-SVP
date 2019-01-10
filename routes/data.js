@@ -5,7 +5,7 @@ const {
   showData,
   addData,
   editData,
-  deleteData
+  deleteData,
 } = require("../logic/data");
 
 const router = express.Router();
@@ -27,8 +27,10 @@ router.get("/showData", async (req, res) => {
 
 router.post("/addData", async (req, res) => {
   const inputData = {
-    teamID: req.body.teamID,
-    temp: req.body.temp
+    temperature: req.body.temperature,
+    humidity: req.body.humidity,
+    pin: req.body.pin,
+    pout: req.body.pout
   };
   const data = await addData(inputData);
   res.send(data);
