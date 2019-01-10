@@ -1,4 +1,5 @@
 const SensorData = require("../models/SensorData");
+const moment = require("moment");
 const { findAndUpdate } = require("./Ml");
 
 async function list() {
@@ -95,22 +96,13 @@ async function getLastFiveHourPin() {
 async function getLastOneHourPinPout() {
   var now = new Date();
 
-  var lastHour = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate(),
-    now.getHours() - 2,
-    0,
-    0,
-    0
-  );
-
+  const lastHour = moment().subtract(2, "hour");
   try {
     const data = await SensorData.find({});
     console.log("data", data);
 
     const timeData = data.filter(d => {
-      return d.timestamp >= lastHour;
+      return moment(timestamp).isAfter(lastHour);
     });
 
     console.log("timeData", timeData);
