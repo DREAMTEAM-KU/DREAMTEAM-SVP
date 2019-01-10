@@ -19,7 +19,9 @@ async function getCurrentPeople(type) {
 }
 
 async function enter() {
-  const lastBeacon = await Beacon.find({ _id: -1 }).limit(1);
+  const lastBeacon = await Beacon.find({})
+    .sort({ _id: -1 })
+    .limit(1);
   const currentPin = lastBeacon[0]
     ? lastBeacon[0]
     : {
@@ -41,7 +43,9 @@ async function enter() {
 }
 
 async function leave() {
-  const lastBeacon = await Beacon.find({ _id: -1 }).limit(1);
+  const lastBeacon = await Beacon.find({})
+    .sort({ _id: -1 })
+    .limit(1);
   const currentPin = lastBeacon[0]
     ? lastBeacon[0]
     : {
