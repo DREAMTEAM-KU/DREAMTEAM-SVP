@@ -48,8 +48,8 @@ function push(msg) {
   curl("push", body);
 }
 
-function reply(reply_token, msg) {
-  let data = getLatestData()
+async function reply(reply_token, msg) {
+  let data = await getLatestData()
   console.log("data", data)
   let body
   console.log("msg", msg)
@@ -60,7 +60,7 @@ function reply(reply_token, msg) {
       messages: [
         {
           type: "text",
-          text: data.temperature
+          text: data.temperature.toString(10)
         },
         {
           type: "text",
