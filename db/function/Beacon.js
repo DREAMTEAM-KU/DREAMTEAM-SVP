@@ -28,11 +28,14 @@ async function enter() {
 
   const nextBeacon = new Beacon({
     pin: currentPin.pin + 1,
-    pout: currentPin.out,
+    pout: currentPin.pout,
     timestamp: new Date()
   });
 
+  console.log("nextBeacon", nextBeacon);
+
   const result = await nextBeacon.save();
+  console.log(result);
   return result;
 }
 
@@ -47,7 +50,7 @@ async function leave() {
 
   const nextBeacon = new Beacon({
     pin: currentPin.pin,
-    pout: currentPout + 1,
+    pout: currentPin.pout + 1,
     timestamp: new Date()
   });
 
