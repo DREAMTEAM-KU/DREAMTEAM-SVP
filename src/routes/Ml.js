@@ -7,11 +7,6 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/migrate", async (req, res) => {
-  await main();
-  res.send();
-});
-
 router.get("/getSanam", async (req, res) => {
   const { hours } = req.query;
   const lists = await list();
@@ -39,7 +34,12 @@ router.get("/predict", async (req, res) => {
     });
 });
 
-router.get("/indexDB", async (req, res) => {
+router.post("/migrate", async (req, res) => {
+  await main();
+  res.send();
+});
+
+router.post("/indexDB", async (req, res) => {
   await indexing();
   res.send("done");
 });
