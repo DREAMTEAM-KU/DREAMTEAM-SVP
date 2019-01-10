@@ -1,21 +1,12 @@
-const bodyParser = require('body-parser')
 const request = require('request')
 const express = require("express");
 
 const router = express.Router();
 
-const app = express()
-const port = process.env.PORT || 4000
-const hostname = '127.0.0.1'
 const HEADERS = {
   'Content-Type': 'application/json',
   'Authorization': 'Bearer {g5Qni05t88rHy3B4yuQUvZS//LsbYu7Ava6R5bvsIRMLZ3BBHnT386209dHstws6+4bijs98Zb0u4XmWGO/FKghGdueH8lORwAFJm16ff0SUAsxSardFX105Voj3spNooUUsmDq2L0M2SJ8AJ/ByQQdB04t89/1O/w1cDnyilFU=}'
 }
-
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
-app.use(bodyParser.json())
 
 router.get("/webhook", (req, res) => {
   res.send("/webhook line api");
@@ -95,10 +86,5 @@ function curl(method, body) {
 
   })
 }
-
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
-})
-
 
 module.exports = router;
