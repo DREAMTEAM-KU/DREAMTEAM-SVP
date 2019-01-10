@@ -1,7 +1,7 @@
 const request = require("request");
 const express = require("express");
-const { getLatestData } = require("../db/function/SensorData")
-const { getCurrentPeople } = require("../db/function/Beacon")
+const { getLatestData } = require("../db/function/SensorData");
+const { getCurrentPeople } = require("../db/function/Beacon");
 
 const router = express.Router();
 
@@ -25,18 +25,11 @@ router.post("/webhook", async (req, res) => {
   reply_token = req.body.events[0].replyToken;
   if (req.body.events[0].type == "beacon") {
     msg = JSON.stringify(req.body.events[0]);
-    // LEAVE, ENTER
-    const type = beacon.type 
-    const currentPeople = await getCurrentPeople(type)
-
-
+    replyBeacon(reply_token, msg);
   } else {
-    msg = req.body.events[0].message.text;
+    replyMsg(reply_token, msg);
   }
-  reply(reply_token, msg);
-  res.send(msg);
-  // console.log(msg)
-  // res.send();
+  res.send();
 });
 
 function push(msg) {
@@ -54,15 +47,12 @@ function push(msg) {
   curl("push", body);
 }
 
-async function reply(reply_token, msg) {
-  let data = await getLatestData()
-  console.log("data", data)
-  let body
-  let inout
-  console.log("msg", msg)
+async function replyMsg(reply_token, msg) {
+  let data = await getLatestData();
+  let replymsg = "";
   if (msg === "Admin_Mon") {
-    console.log("in if")
-    body = JSON.stringify({
+    msg = req.body.events[0].message.text;
+    replymsg = JSON.stringify({
       replyToken: reply_token,
       messages: [
         {
@@ -79,23 +69,30 @@ async function reply(reply_token, msg) {
         }
       ]
     });
-    console.log("body", body)
   }
+  curl("reply", msg);
+  return msg;
+}
 
+async function replyBeacon(reply_token, msg) {
+  const type = beacon.type;
+  const currentPeople = await getCurrentPeople(type);
+
+  let replymsg = "";
   if (currentPeople > 2) {
-    console.log("in if2")
-    inout = JSON.stringify({
+    console.log("in if2");
+    replymsg = JSON.stringify({
       replyToken: reply_token,
       messages: [
         {
           type: "text",
           text: "Get Out!"
-        },
+        }
       ]
     });
-    console.log("body", inout)
   }
-  curl("reply", inout);
+  curl("reply", msg);
+  return msg;
 }
 
 function curl(method, body) {
