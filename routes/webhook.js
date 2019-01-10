@@ -49,10 +49,12 @@ function push(msg) {
 }
 
 async function replyMsg(reply_token, msg) {
+  console.log(msg)
   let data = await getLatestData();
   console.log("data", data)
   let replymsg = "";
   if (msg === "Admin_Mon") {
+    console.log("ADMIN MON")
     msg = req.body.events[0].message.text;
     replymsg = JSON.stringify({
       replyToken: reply_token,
