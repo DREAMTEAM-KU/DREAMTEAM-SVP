@@ -1,6 +1,7 @@
 const request = require("request");
 const express = require("express");
 const { getLatestData } = require("../db/function/SensorData")
+const { getCurrentPeople } = require("../db/function/Beacon")
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get("/webhook", (req, res) => {
   res.send("/webhook line api");
 });
 
-router.post("/webhook", (req, res) => {
+router.post("/webhook", async (req, res) => {
   console.log("POST /webhook");
   // do some thing
   // reply block
@@ -24,6 +25,11 @@ router.post("/webhook", (req, res) => {
   reply_token = req.body.events[0].replyToken;
   if (req.body.events[0].type == "beacon") {
     msg = JSON.stringify(req.body.events[0]);
+    // LEAVE, ENTER
+    const type = 'ENTER' 
+    const currentPeople = await getCurrentPeople(type)
+
+
   } else {
     msg = req.body.events[0].message.text;
   }
