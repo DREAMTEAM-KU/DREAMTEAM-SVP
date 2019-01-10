@@ -1,0 +1,16 @@
+stages: deploy
+
+before_script:
+  - mkdir -p ~/.ssh
+  - echo "$DEPLOY_SERVER_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - eval "$(ssh-agent -s)"
+  - ssh-add ~/.ssh/id_rsa
+  - ssh-keyscan -H $DEPLOYMENT_SERVER_IP >> ~/.ssh/known_hosts
+  
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - ssh ziveso@$DEPLOYMENT_SERVER_IP "cd DREAMTEAM_SVP/; git reset --hard; git pull origin master; npm install --only=prod;"
