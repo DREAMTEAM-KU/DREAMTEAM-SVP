@@ -16,4 +16,11 @@ router.get("/", (req, res) => {
   res.send("DreamTeam api server");
 });
 
+
+const { clearDB } = require('../db/function/Beacon')
+router.get("/clearBeacon", async (req, res) => {
+  const result = await clearDB()
+  res.send(result)
+})
+
 module.exports = router;

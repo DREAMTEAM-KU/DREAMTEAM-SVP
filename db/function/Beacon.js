@@ -63,6 +63,12 @@ async function leave() {
   return result;
 }
 
+async function clearDB() {
+  const data = await Beacon.deleteMany({});
+  return "done";
+}
+
 module.exports = {
-  getCurrentPeople
+  getCurrentPeople,
+  clearDB
 };
