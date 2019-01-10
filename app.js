@@ -43,7 +43,7 @@ app.listen(PORT, () => {
   console.log("server is started on port " + PORT);
 });
 
-if (!process.env.HTTPS_PORT) {
+if (process.env.NODE_ENV==='production') {
   // # certificate part HTTPS
   // Certificate
   const privateKey = fs.readFileSync(
