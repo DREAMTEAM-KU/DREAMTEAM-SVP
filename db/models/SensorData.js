@@ -17,7 +17,7 @@ const sensorDataSchema = mongoose.Schema({
       type: Number,
       default: 0
   },
-  updateDate: {
+  timestamp: {
     type: Date,
     default: new Date()
   }

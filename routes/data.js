@@ -6,6 +6,7 @@ const {
   addData,
   editData,
   deleteData,
+  getLastFiveHourPin
 } = require("../logic/data");
 
 const router = express.Router();
@@ -43,9 +44,14 @@ router.put("/editData/:teamID", async (req, res) => {
   res.send(data);
 });
 
-router.delete("/deleteData/:teamID", (req, res) => {
+router.delete("/deleteData/:teamID", async (req, res) => {
   const teamID = req.params.teamID;
-  const data = deleteData(teamID);
+  const data = await deleteData(teamID);
+  res.send(data);
+});
+
+router.get("/fivepin", async (req, res) => {
+  const data = await getLastFiveHourPin();
   res.send(data);
 });
 
