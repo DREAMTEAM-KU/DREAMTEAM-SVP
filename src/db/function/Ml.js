@@ -29,24 +29,25 @@ async function list() {
 }
 
 async function findAndUpdate(data) {
-  const lastest = await getSanam(1);
-  if (lastest.length > 0) {
+  const now = new Date();
+
+  const xDate = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    now.getHours(),
+    0,
+    0,
+    0
+  );
+  const lastest = await Ml.findOne({ time: xDate });
+  if (lastest) {
     return await Ml.update(
-      { _id: lastest[0]._id },
-      { value: lastest[0].value + data.pin }
+      { _id: lastest._id },
+      { value: lastest.value + data.pin }
     );
   } else {
-    const time = new Date();
-
-    const modifiedTime = new Date(
-      time.getFullYear(),
-      time.getMonth(),
-      time.getDate(),
-      time.getHours(),
-      0,
-      0
-    );
-    return await Ml.create({ time: modifiedTime, value: data.pin });
+    return await Ml.create({ time: xDate, value: data.pin });
   }
 }
 
