@@ -1,4 +1,4 @@
-const { list, insert, update, removeID, getLatestData } = require("../db/function/SensorData");
+const { list, insert, update, removeID, getLatestData, getLastFiveHourPin } = require("../db/function/SensorData");
 const { typetable } = require("./enum");
 
 async function receiveData(payload) {
@@ -154,5 +154,6 @@ module.exports = {
   addData,
   editData,
   deleteData,
-  showLatestData
+  showLatestData,
+  getLastFiveHourPin
 };
