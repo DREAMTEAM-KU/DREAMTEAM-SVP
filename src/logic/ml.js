@@ -1,4 +1,4 @@
-const { insert } = require("../db/function/Ml");
+const { migration } = require("../db/function/Ml");
 
 async function migrate(data) {
   // get key
@@ -10,13 +10,13 @@ async function migrate(data) {
 
   const results = [];
   for (var i = 0; i < value.length; i++) {
-    const date = new Date(ymd[0], ymd[1], ymd[2], i, 0, 0);
+    const date = new Date(ymd[0], ymd[1], ymd[2], i, 0, 0, 0);
     const modified = {
       time: date,
       value: value[i]
     };
-    const inserted = await insert(modified);
-    results.push(inserted);
+    const migrationed = await migration(modified);
+    results.push(migrationed);
   }
 
   return results;

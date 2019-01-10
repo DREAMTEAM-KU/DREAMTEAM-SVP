@@ -1,11 +1,11 @@
-const { migrate } = require("../logic/ml");
+const { main } = require("../logic/migrate/ml");
 
 const express = require("express");
 
 const router = express.Router();
 
-router.post("/migrate", async (req, res) => {
-  const data = await migrate(req.body);
+router.get("/migrate", async (req, res) => {
+  await main();
   res.send();
 });
 
