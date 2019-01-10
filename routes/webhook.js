@@ -25,10 +25,10 @@ router.post("/webhook", async (req, res) => {
   reply_token = req.body.events[0].replyToken;
 
   if (req.body.events[0].type == "beacon") {
-    msg = req.body.events[0]
+    msg = req.body.events[0];
     replyBeacon(reply_token, msg);
   } else {
-    msg = req.body.events[0].message.text
+    msg = req.body.events[0].message.text;
     replyMsg(reply_token, msg);
   }
   res.send();
@@ -50,12 +50,12 @@ function push(msg) {
 }
 
 async function replyMsg(reply_token, msg) {
-  console.log(msg)
+  console.log(msg);
   let data = await getLatestData();
-  console.log("data", data)
+  console.log("data", data);
   let replymsg = "";
   if (msg === "Admin_Mon") {
-    console.log("ADMIN MON")
+    console.log("ADMIN MON");
     replymsg = JSON.stringify({
       replyToken: reply_token,
       messages: [
@@ -74,7 +74,7 @@ async function replyMsg(reply_token, msg) {
       ]
     });
   }
-  console.log("replymsg", replymsg)
+  console.log("replymsg", replymsg);
   curl("reply", replymsg);
   return replymsg;
 }
@@ -84,28 +84,25 @@ async function replyBeacon(reply_token, msg) {
   const currentPeople = await getCurrentPeople(type);
 
   let replymsg = "";
-  if (currentPeople > 2) {
-    console.log("in if2");
-    replymsg = JSON.stringify({
-      replyToken: reply_token,
-      messages: [
-        {
-          type: "text",
-          text: "Get Out!"
-        }
-      ]
-    });
+  let text = " hi ";
+  if (type === "enter") {
+    if (currentPeople > 1) {
+      text = "ออกไป ที่นี่่ไม่รับคุณ";
+    } else {
+      text = "Welcome";
+    }
   } else {
-    replymsg = JSON.stringify({
-      replyToken: reply_token,
-      messages: [
-        {
-          type: "text",
-          text: "Welcome"
-        }
-      ]
-    });
+    text = "bye bye";
   }
+  replymsg = JSON.stringify({
+    replyToken: reply_token,
+    messages: [
+      {
+        type: "text",
+        text
+      }
+    ]
+  });
   curl("reply", replymsg);
   return msg;
 }
