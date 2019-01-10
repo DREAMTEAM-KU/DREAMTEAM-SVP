@@ -70,7 +70,7 @@ async function replyMsg(reply_token, msg) {
       ]
     });
   }
-  curl("reply", msg);
+  curl("reply", replymsg);
   return msg;
 }
 
@@ -91,7 +91,7 @@ async function replyBeacon(reply_token, msg) {
       ]
     });
   }
-  curl("reply", msg);
+  curl("reply", replymsg);
   return msg;
 }
 
