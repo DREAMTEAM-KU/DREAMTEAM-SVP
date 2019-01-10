@@ -1,3 +1,4 @@
+const moment = require("moment");
 const Ml = require("../models/Ml");
 
 async function migration(data) {
@@ -28,9 +29,11 @@ async function list() {
 }
 
 async function findAndUpdate(data) {
-  const { _id, value } = await getSanam(1);
-  console.log("value", value);
-  return await Ml.update({ _id }, { value: value + 1 });
+  const lastest = await getSanam(1);
+  return await Ml.update(
+    { _id: lastest[0]._id },
+    { value: lastest[0].value + data.pin }
+  );
 }
 
 async function getSanam(hours = 0) {

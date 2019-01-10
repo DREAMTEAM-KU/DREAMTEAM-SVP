@@ -4,7 +4,10 @@ const { typetable } = require("./enum");
 async function receiveData(payload) {
   const data = await payloadDivider(payload);
   jData = {
-    temp: binarySignConverter(hex2decimal(data["00"].data).toString(2)) / 10
+    temperature: binarySignConverter(hex2decimal(data["00"].data).toString(2)) / 10,
+    humidity: hex2decimal(data["01"].data),
+    pin: hex2decimal(data["02"].data),
+    pout: hex2decimal(data["03"].data),
   };
   const result = await addData(jData);
   return result;

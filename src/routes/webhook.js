@@ -1,6 +1,9 @@
 const request = require("request");
 const express = require("express");
-const { getLatestData } = require("../db/function/SensorData");
+const {
+  getLatestData,
+  getLastOneHourPinPout
+} = require("../db/function/SensorData");
 const { getCurrentPeople } = require("../db/function/Beacon");
 
 const router = express.Router();
@@ -56,6 +59,7 @@ async function replyMsg(reply_token, msg) {
   let replymsg = "";
   if (msg === "Admin_Mon") {
     console.log("ADMIN MON");
+    const { pin, pout } = await getLastOneHourPinPout();
     replymsg = JSON.stringify({
       replyToken: reply_token,
       messages: [
@@ -65,11 +69,11 @@ async function replyMsg(reply_token, msg) {
         },
         {
           type: "text",
-          text: "Humidity"
+          text: data.humidity.toString(10)
         },
         {
           type: "text",
-          text: "in&out"
+          text: `people in ${pin}, people out ${pout} in last hour`
         }
       ]
     });

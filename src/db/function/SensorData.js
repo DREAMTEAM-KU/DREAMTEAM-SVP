@@ -92,11 +92,41 @@ async function getLastFiveHourPin() {
   }
 }
 
+async function getLastOneHourPinPout() {
+  var now = new Date();
+
+  var lastFive = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    now.getHours() - 1,
+    now.getMinutes(),
+    now.getSeconds(),
+    0
+  );
+
+  try {
+    const data = await SensorData.find({});
+
+    const timeData = data.filter(d => {
+      return d.timestamp >= lastFive;
+    });
+
+    const cleanData = timeData.map(d => {
+      return { pin: d.pin, pout: d.pout };
+    });
+    return cleanData;
+  } catch (e) {
+    throw e;
+  }
+}
+
 module.exports = {
   list,
   insert,
   update,
   removeID,
   getLatestData,
-  getLastFiveHourPin
+  getLastFiveHourPin,
+  getLastOneHourPinPout
 };
