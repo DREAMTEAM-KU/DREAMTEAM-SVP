@@ -12,7 +12,11 @@ router.get("/migrate", async (req, res) => {
 
 router.get("/getSanam", async (req, res) => {
   const { hours } = req.query;
-  const result = await getSanam(parseInt(hours, 10));
+  const data = await getSanam(parseInt(hours, 10));
+  const output = data.map(d => d.value);
+  const result = {
+    number_of_tourist: output
+  }
   res.send(result);
 });
 

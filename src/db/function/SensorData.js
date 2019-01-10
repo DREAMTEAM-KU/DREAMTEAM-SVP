@@ -1,4 +1,5 @@
 const SensorData = require("../models/SensorData");
+const { findAndUpdate } = require("./Ml");
 
 async function list() {
   try {
@@ -18,6 +19,7 @@ async function insert(data) {
       timestamp: new Date()
     };
     console.log(timeData);
+    await findAndUpdate(data);
     const sensorData = new SensorData(timeData);
     const result = await sensorData.save();
     return result;
