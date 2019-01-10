@@ -55,7 +55,6 @@ async function replyMsg(reply_token, msg) {
   let replymsg = "";
   if (msg === "Admin_Mon") {
     console.log("ADMIN MON")
-    msg = req.body.events[0].message.text;
     replymsg = JSON.stringify({
       replyToken: reply_token,
       messages: [
