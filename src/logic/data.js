@@ -1,14 +1,22 @@
-const { list, insert, update, removeID, getLatestData, getLastFiveHourPin } = require("../db/function/SensorData");
+const {
+  list,
+  insert,
+  update,
+  removeID,
+  getLatestData,
+  getLastFiveHourPin
+} = require("../db/function/SensorData");
 const { typetable } = require("./enum");
 
 async function receiveData(payload) {
   const data = await payloadDivider(payload);
-  console.log(data)
+  console.log(data);
   jData = {
-    temperature: binarySignConverter(hex2decimal(data["00"].data).toString(2)) / 10,
-    humidity: hex2decimal(data["01"].data),
+    temperature:
+      binarySignConverter(hex2decimal(data["00"].data).toString(2)) / 10,
+    humidity: parseInt(hex2decimal(data["01"].data), 10) / 2,
     pin: hex2decimal(data["02"].data),
-    pout: hex2decimal(data["03"].data),
+    pout: hex2decimal(data["03"].data)
   };
   const result = await addData(jData);
   return result;
