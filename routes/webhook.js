@@ -86,8 +86,8 @@ async function replyBeacon(reply_token, msg) {
   let replymsg = "";
   let text = " hi ";
   if (type === "enter") {
-    if (currentPeople > 1) {
-      text = "ออกไป ที่นี่่ไม่รับคุณ";
+    if (currentPeople > 2) {
+      text = "จำนวนคนเกิน กรุณาเชิญคนออกจากบริเวณ";
     } else {
       text = "Welcome";
     }
