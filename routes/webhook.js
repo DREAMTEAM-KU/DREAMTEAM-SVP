@@ -50,8 +50,11 @@ function push(msg) {
 
 function reply(reply_token, msg) {
   let data = getLatestData()
+  console.log("data", data)
   let body
+  console.log("msg", msg)
   if (msg === "Admin_Mon") {
+    console.log("in if")
     body = JSON.stringify({
       replyToken: reply_token,
       messages: [
@@ -69,6 +72,7 @@ function reply(reply_token, msg) {
         }
       ]
     });
+    console.log("body", body)
   }
   curl("reply", body);
 }
@@ -83,7 +87,9 @@ function curl(method, body) {
     },
     (err, res, body) => {
       console.log("status = " + res.statusCode);
-      console.log(err);
+      if (err) {
+        console.log(err);
+      }
     }
   );
 }
