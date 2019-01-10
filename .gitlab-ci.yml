@@ -14,4 +14,4 @@ deploy:
   only:
     - master
   script:
-    - ssh ziveso@$DEPLOYMENT_SERVER_IP "cd DREAMTEAM_SVP/; git reset --hard; git pull origin gitlab;"
+    - ssh ziveso@$DEPLOYMENT_SERVER_IP "cd DREAMTEAM_SVP/; git reset --hard; git pull gitlab master; sudo npm install --only=prod"
