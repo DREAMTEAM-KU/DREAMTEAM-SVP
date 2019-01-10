@@ -1,4 +1,5 @@
 const Beacon = require("../models/Beacon");
+const { add } = require("./Ml");
 
 async function getCurrentPeople(type) {
   console.log(type);
@@ -34,6 +35,8 @@ async function enter() {
     pout: currentPin.pout,
     timestamp: new Date()
   });
+
+  add({ time: new Date(), value: 1 });
 
   console.log("nextBeacon", nextBeacon);
 
