@@ -23,8 +23,9 @@ router.post("/webhook", async (req, res) => {
   let reply_token = "";
   let msg = "";
   reply_token = req.body.events[0].replyToken;
+
   if (req.body.events[0].type == "beacon") {
-    msg = JSON.stringify(req.body.events[0]);
+    msg = req.body.events[0]
     replyBeacon(reply_token, msg);
   } else {
     msg = req.body.events[0].message.text
