@@ -1,6 +1,21 @@
+const bodyParser = require('body-parser')
+const request = require('request')
 const express = require("express");
 
 const router = express.Router();
+
+const app = express()
+const port = process.env.PORT || 4000
+const hostname = '127.0.0.1'
+const HEADERS = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer {g5Qni05t88rHy3B4yuQUvZS//LsbYu7Ava6R5bvsIRMLZ3BBHnT386209dHstws6+4bijs98Zb0u4XmWGO/FKghGdueH8lORwAFJm16ff0SUAsxSardFX105Voj3spNooUUsmDq2L0M2SJ8AJ/ByQQdB04t89/1O/w1cDnyilFU=}'
+}
+
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
+app.use(bodyParser.json())
 
 router.get("/webhook", (req, res) => {
   res.send("/webhook line api");
@@ -8,7 +23,82 @@ router.get("/webhook", (req, res) => {
 
 router.post("/webhook", (req, res) => {
   // do some thing
-  res.send();
+  // reply block
+  let reply_token = ''
+  let msg = ''
+  reply_token = req.body.events[0].replyToken
+  if (req.body.events[0].type == 'beacon') {
+    msg = JSON.stringify(req.body.events[0])
+  } else {
+    msg = req.body.events[0].message.text
+  }
+  reply(reply_token, msg)
+  res.send(msg)
+  // console.log(msg)
+  // res.send();
 });
+
+function push(msg) {
+  let body = JSON.stringify({
+    // push body
+    to: 'U348d69552676fcfe93b75b5d187d0652',
+    messages: [{
+      type: 'text',
+      text: msg
+    }]
+  })
+  // curl
+  curl('push', body)
+}
+
+function reply(reply_token, msg) {
+
+  let body = JSON.stringify({
+    replyToken: reply_token,
+    messages: [{
+      type: 'text',
+      text: msg
+    }]
+  })
+
+if( msg === "Admin_Mon"){
+    body =  JSON.stringify({
+    replyToken: reply_token,
+
+    messages: [{
+        type: 'text',
+        text: 'Temp.'
+    },
+    {
+        type: 'text',
+        text: 'Humidity'
+    },
+    {
+      type: 'text',
+      text: 'in&out'
+  }]
+})
+
+}
+  curl('reply', body)
+}
+
+function curl(method, body) {
+  console.log('method:' + method)
+  request.post({
+    url: 'https://api.line.me/v2/bot/message/' + method,
+    headers: HEADERS,
+    body: body
+  }, (err, res, body) => {
+    console.log('status = ' + res.statusCode)
+    console.log(err);
+
+  })
+}
+
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`)
+})
+
 
 module.exports = router;
