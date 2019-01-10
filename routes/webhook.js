@@ -50,8 +50,9 @@ function push(msg) {
 
 function reply(reply_token, msg) {
   let data = getLatestData()
+  let body;
   if (msg === "Admin_Mon") {
-    let body = JSON.stringify({
+    body = JSON.stringify({
       replyToken: reply_token,
       messages: [
         {
