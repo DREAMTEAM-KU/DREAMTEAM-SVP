@@ -27,7 +27,7 @@ router.post("/webhook", async (req, res) => {
     msg = JSON.stringify(req.body.events[0]);
     replyBeacon(reply_token, msg);
   } else {
-    console.log("not bracon")
+    msg = req.body.events[0].message.text
     replyMsg(reply_token, msg);
   }
   res.send();
