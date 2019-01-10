@@ -1,6 +1,7 @@
 const Beacon = require("../models/Beacon");
 
 async function getCurrentPeople(type) {
+  console.log(type);
   try {
     let newBeacon;
     switch (type) {
