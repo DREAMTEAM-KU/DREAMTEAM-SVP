@@ -22,6 +22,12 @@ async function migration(data) {
   return result;
 }
 
+async function list() {
+  const data = await Ml.find({});
+  return data;
+}
+
 module.exports = {
-  migration
+  migration,
+  list
 };

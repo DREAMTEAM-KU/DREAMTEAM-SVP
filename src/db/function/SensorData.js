@@ -72,7 +72,8 @@ async function getLastFiveHourPin() {
     now.getDate(),
     now.getHours() - 5,
     now.getMinutes(),
-    now.getSeconds()
+    now.getSeconds(),
+    0
   );
 
   try {
