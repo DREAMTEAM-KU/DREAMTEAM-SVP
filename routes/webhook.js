@@ -79,7 +79,7 @@ async function replyMsg(reply_token, msg) {
 }
 
 async function replyBeacon(reply_token, msg) {
-  const type = msg.type;
+  const type = msg.beacon.type;
   const currentPeople = await getCurrentPeople(type);
 
   let replymsg = "";
