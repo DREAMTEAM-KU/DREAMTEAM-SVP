@@ -1,6 +1,6 @@
 const request = require("request");
 const express = require("express");
-const{ getLatestData} = require("../db/function/SensorData")
+const { getLatestData } = require("../db/function/SensorData")
 
 const router = express.Router();
 
@@ -50,14 +50,14 @@ function push(msg) {
 
 function reply(reply_token, msg) {
   let data = getLatestData()
-  let body;
+  let body
   if (msg === "Admin_Mon") {
     body = JSON.stringify({
       replyToken: reply_token,
       messages: [
         {
           type: "text",
-          text: data.temperature 
+          text: data.temperature
         },
         {
           type: "text",
@@ -69,17 +69,6 @@ function reply(reply_token, msg) {
         }
       ]
     });
-
-  // let body = JSON.stringify({
-  //   replyToken: reply_token,
-  //   messages: [
-  //     {
-  //       type: "text",
-  //       text: msg
-  //     }
-  //   ]
-  // });
-
   }
   curl("reply", body);
 }
@@ -90,7 +79,7 @@ function curl(method, body) {
     {
       url: "https://api.line.me/v2/bot/message/" + method,
       headers: HEADERS,
-      body: body
+      body
     },
     (err, res, body) => {
       console.log("status = " + res.statusCode);
