@@ -115,6 +115,7 @@ async function getLastOneHourPinPout() {
     const cleanData = timeData.map(d => {
       return { pin: d.pin, pout: d.pout };
     });
+    console.log(cleanData)
     return cleanData;
   } catch (e) {
     throw e;
