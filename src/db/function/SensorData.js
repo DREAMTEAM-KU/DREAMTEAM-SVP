@@ -99,13 +99,11 @@ async function getLastOneHourPinPout() {
   const lastHour = moment().subtract(2, "hour");
   try {
     const data = await SensorData.find({});
-    console.log("data", data);
 
     const timeData = data.filter(d => {
       return moment(d.timestamp).isAfter(lastHour);
     });
 
-    console.log("timeData", timeData);
     const cleanData = timeData.map(d => {
       return { pin: d.pin, pout: d.pout };
     });
