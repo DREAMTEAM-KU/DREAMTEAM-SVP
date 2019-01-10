@@ -49,20 +49,9 @@ function push(msg) {
 }
 
 function reply(reply_token, msg) {
-  let body = JSON.stringify({
-    replyToken: reply_token,
-    messages: [
-      {
-        type: "text",
-        text: msg
-      }
-    ]
-  });
-
   if (msg === "Admin_Mon") {
     body = JSON.stringify({
       replyToken: reply_token,
-
       messages: [
         {
           type: "text",
@@ -78,6 +67,17 @@ function reply(reply_token, msg) {
         }
       ]
     });
+
+  // let body = JSON.stringify({
+  //   replyToken: reply_token,
+  //   messages: [
+  //     {
+  //       type: "text",
+  //       text: msg
+  //     }
+  //   ]
+  // });
+
   }
   curl("reply", body);
 }
