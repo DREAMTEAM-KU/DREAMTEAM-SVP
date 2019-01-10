@@ -107,15 +107,17 @@ async function getLastOneHourPinPout() {
 
   try {
     const data = await SensorData.find({});
+    console.log("data", data);
 
     const timeData = data.filter(d => {
       return d.timestamp >= lastFive;
     });
 
+    console.log("timeData", timeData);
     const cleanData = timeData.map(d => {
       return { pin: d.pin, pout: d.pout };
     });
-    console.log(cleanData)
+    console.log(cleanData);
     return cleanData;
   } catch (e) {
     throw e;
