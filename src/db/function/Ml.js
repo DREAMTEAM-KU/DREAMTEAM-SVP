@@ -24,7 +24,7 @@ async function migration(data) {
 }
 
 async function list() {
-  const data = await Ml.find({});
+  const data = await Ml.find({}).sort({ time: -1 });
   return data;
 }
 
@@ -67,8 +67,29 @@ async function getSanam(hours = 0) {
   return data;
 }
 
+async function indexing() {
+  const now = new Date();
+  for (var i = 0; i < 500; i++) {
+    const xDate = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      now.getHours() - i,
+      0,
+      0,
+      0
+    );
+
+    const ml = await Ml.findOne({ time: xDate });
+    if (!ml) {
+      Ml.create({ time: xDate, value: 0 });
+    }
+  }
+}
+
 module.exports = {
   migration,
   list,
-  findAndUpdate
+  findAndUpdate,
+  indexing
 };
