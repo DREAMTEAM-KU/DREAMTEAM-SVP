@@ -107,13 +107,13 @@ async function getLastOneHourPinPout() {
     const cleanData = timeData.map(d => {
       return { pin: d.pin, pout: d.pout };
     });
-    console.log(cleanData);
-    return (
-      cleanData[0] || {
-        pin: 0,
-        pout: 0
-      }
-    );
+    let pin = 0;
+    let pout = 0;
+    cleanData.forEach(c => {
+      (pin += c.pin), (pout += c.pout);
+    });
+
+    return { pin, pout };
   } catch (e) {
     throw e;
   }
