@@ -110,7 +110,12 @@ async function getLastOneHourPinPout() {
       return { pin: d.pin, pout: d.pout };
     });
     console.log(cleanData);
-    return cleanData;
+    return (
+      cleanData[0] || {
+        pin: 0,
+        pout: 0
+      }
+    );
   } catch (e) {
     throw e;
   }
