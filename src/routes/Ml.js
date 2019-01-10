@@ -21,13 +21,28 @@ router.get("/getSanam", async (req, res) => {
     const output = [];
     let out;
     for (var i = 0; i < hours; i++) {
-      const xDate = moment().subtract(i, "hour");
-
-      const xDate2 = moment().subtract(i + 1, "hour");
-
-      out = data.filter(
-        d => moment(d.time).isBefore(xDate) && moment(d.time).isAfter(xDate2)
+      const now = new Date();
+      const xDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        now.getHours() - i,
+        now.getMinutes(),
+        now.getSeconds(),
+        now.getMilliseconds()
       );
+      const xDate2 = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        now.getHours() - (i + 1),
+        now.getMinutes(),
+        now.getSeconds(),
+        now.getMilliseconds()
+      );
+      out = data.filter(d => {
+        return xDate >= new Date(d.time) && xDate2 <= new Date(d.time);
+      });
 
       const outp = out[0] ? out[0].value : 0;
       output.push(outp);
