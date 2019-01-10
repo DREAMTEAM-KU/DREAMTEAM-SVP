@@ -24,6 +24,7 @@ async function insert(data) {
     );
     return result;
   } else {
+    console.log(value);
     const _ml = new Ml({
       time: modifiedTime,
       value: data.value,
