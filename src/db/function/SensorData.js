@@ -95,13 +95,13 @@ async function getLastFiveHourPin() {
 async function getLastOneHourPinPout() {
   var now = new Date();
 
-  var lastFive = new Date(
+  var lastHour = new Date(
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    now.getHours() - 1,
-    now.getMinutes(),
-    now.getSeconds(),
+    now.getHours() - 2,
+    0,
+    0,
     0
   );
 
@@ -110,7 +110,7 @@ async function getLastOneHourPinPout() {
     console.log("data", data);
 
     const timeData = data.filter(d => {
-      return d.timestamp >= lastFive;
+      return d.timestamp >= lastHour;
     });
 
     console.log("timeData", timeData);
