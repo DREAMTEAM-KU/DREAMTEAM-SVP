@@ -79,7 +79,7 @@ async function replyMsg(reply_token, msg) {
 }
 
 async function replyBeacon(reply_token, msg) {
-  const type = beacon.type;
+  const type = msg.type;
   const currentPeople = await getCurrentPeople(type);
 
   let replymsg = "";
@@ -91,6 +91,16 @@ async function replyBeacon(reply_token, msg) {
         {
           type: "text",
           text: "Get Out!"
+        }
+      ]
+    });
+  } else {
+    replymsg = JSON.stringify({
+      replyToken: reply_token,
+      messages: [
+        {
+          type: "text",
+          text: "Welcome"
         }
       ]
     });
