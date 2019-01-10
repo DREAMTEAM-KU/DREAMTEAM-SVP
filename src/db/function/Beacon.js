@@ -36,10 +36,6 @@ async function enter() {
     timestamp: new Date()
   });
 
-  add({ time: new Date(), value: 1 });
-
-  console.log("nextBeacon", nextBeacon);
-
   const result = await nextBeacon.save();
   console.log(result);
   return result;
