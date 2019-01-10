@@ -1,5 +1,14 @@
 # Dream Team
 
+### To setup this 
+
+``` cp .env-example .env // and setup database environment ```
+
+``` npm install ```
+
+``` npm start ```
+
+
 # Task Server Programming
 
 ## Server IP 202.139.192.76

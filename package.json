@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "node app.js",
-    "dev:nodemon": "nodemon app.js"
+    "dev:nodemon": "nodemon app.js",
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
