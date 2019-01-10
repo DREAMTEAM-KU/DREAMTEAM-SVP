@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const temperatureSchema = mongoose.Schema({
-  teamID: String,
   temp: Number,
   updateDate: {
     type: Date,

@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 var mongoose = require("mongoose");
 
 // const collections = ["users"];
-if (!process.env.DATABASE_USERNAME) {
+if (process.env.NODE_ENV === "production") {
   mongoose.connect(
     process.env.DATABASE_URL,
     {
@@ -43,7 +43,7 @@ app.listen(PORT, () => {
   console.log("server is started on port " + PORT);
 });
 
-if (process.env.NODE_ENV==='production') {
+if (process.env.NODE_ENV === "production") {
   // # certificate part HTTPS
   // Certificate
   const privateKey = fs.readFileSync(
