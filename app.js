@@ -5,6 +5,7 @@ const fs = require("fs");
 const cors = require("cors");
 
 const routes = require("./routes");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
 
@@ -12,13 +13,19 @@ const PORT = process.env.PORT || 8080;
 var mongoose = require("mongoose");
 
 // const collections = ["users"];
-const option = { auth: { user: "ziveso", password: "password" } };
-
-// fix this locally, setup env.
-mongoose.connect(
-  "mongodb://localhost/hwData",
-  option
-);
+if (!process.env.DATABASE_USERNAME) {
+  mongoose.connect(
+    process.env.DATABASE_URL,
+    {
+      auth: {
+        user: process.env.DATABASE_USERNAME,
+        password: process.env.DATABASE_PASSWORD
+      }
+    }
+  );
+} else {
+  mongoose.connect("mongodb://localhost/hwData");
+}
 
 // mongoose.connect(
 //   "mongodb://localhost/hwData"
