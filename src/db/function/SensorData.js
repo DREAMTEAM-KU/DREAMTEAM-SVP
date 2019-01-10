@@ -102,7 +102,7 @@ async function getLastOneHourPinPout() {
     console.log("data", data);
 
     const timeData = data.filter(d => {
-      return moment(timestamp).isAfter(lastHour);
+      return moment(d.timestamp).isAfter(lastHour);
     });
 
     console.log("timeData", timeData);
