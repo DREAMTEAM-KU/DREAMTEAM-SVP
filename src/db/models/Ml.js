@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const mlSchema = mongoose.Schema({
     time: {
-        type: Date
+        type: Date,
         default: new Date()
     },
     value: Number,
     timestamp: {
-        type: Date
+        type: Date,
         default: new Date()
     },
 });

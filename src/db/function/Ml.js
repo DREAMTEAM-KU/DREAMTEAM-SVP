@@ -1,13 +1,7 @@
 const Ml = require("../models/Ml");
 
 function insert(data) {
-  // const timeData = {
-  //     ...data,
-  //     timestamp: new Date()
-  // }
-
-  // [ "date", 1,2,3,4,5,6,8,9,10]
-  var date = new Date(data[0]);
+  //   var date = new Date(data[0]);
 
   data.splice(0, 1);
   data.forEach((d, index) => {
@@ -23,12 +17,12 @@ function insert(data) {
       value: d
     });
   });
-
   //
   return ml;
 }
 
 function add(data) {
+  // append
   const ml = new Ml({
     ...data,
     timestamp: new Date()

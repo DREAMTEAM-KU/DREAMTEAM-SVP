@@ -7,9 +7,9 @@
   "author": "DREAMTEAM",
   "license": "MIT",
   "scripts": {
-    "dev": "node app.js",
-    "dev:nodemon": "nodemon app.js",
-    "start": "node app.js"
+    "dev": "node src/app.js",
+    "dev:nodemon": "nodemon src/app.js",
+    "start": "node src/app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

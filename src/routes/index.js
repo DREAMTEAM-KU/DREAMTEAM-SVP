@@ -2,12 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 
-const userRoute = require("./user");
 const dataRoute = require("./data");
 const webhookRoute = require("./webhook");
 const mlRoute = require("./Ml");
-
-router.use(userRoute);
 
 router.use(dataRoute);
 
