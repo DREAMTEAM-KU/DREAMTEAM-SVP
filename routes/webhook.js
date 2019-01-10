@@ -26,7 +26,7 @@ router.post("/webhook", async (req, res) => {
   if (req.body.events[0].type == "beacon") {
     msg = JSON.stringify(req.body.events[0]);
     // LEAVE, ENTER
-    const type = 'ENTER' 
+    const type = beacon.type 
     const currentPeople = await getCurrentPeople(type)
 
 
@@ -58,6 +58,7 @@ async function reply(reply_token, msg) {
   let data = await getLatestData()
   console.log("data", data)
   let body
+  let inout
   console.log("msg", msg)
   if (msg === "Admin_Mon") {
     console.log("in if")
@@ -80,7 +81,21 @@ async function reply(reply_token, msg) {
     });
     console.log("body", body)
   }
-  curl("reply", body);
+
+  if (currentPeople > 2) {
+    console.log("in if2")
+    inout = JSON.stringify({
+      replyToken: reply_token,
+      messages: [
+        {
+          type: "text",
+          text: "Get Out!"
+        },
+      ]
+    });
+    console.log("body", inout)
+  }
+  curl("reply", inout);
 }
 
 function curl(method, body) {
