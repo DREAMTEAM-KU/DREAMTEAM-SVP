@@ -16,8 +16,12 @@ router.get("/getSanam", async (req, res) => {
   const output = data.map(d => d.value);
   const result = {
     number_of_tourist: output
-  }
+  };
   res.send(result);
+});
+
+router.get("/predict", async (req, res) => {
+  res.send("/predict");
 });
 
 module.exports = router;
