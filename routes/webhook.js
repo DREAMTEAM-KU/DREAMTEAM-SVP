@@ -1,5 +1,6 @@
 const request = require("request");
 const express = require("express");
+const{ getLatestData} = require("../db/function/SensorData")
 
 const router = express.Router();
 
@@ -65,7 +66,7 @@ function reply(reply_token, msg) {
       messages: [
         {
           type: "text",
-          text: "Temp."
+          text: "Temp" 
         },
         {
           type: "text",
