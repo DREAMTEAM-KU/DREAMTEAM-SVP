@@ -19,11 +19,16 @@ async function getCurrentPeople(type) {
 
 async function enter() {
   const lastBeacon = await Beacon.find({ _id: -1 }).limit(1);
-  const currentPin = lastBeacon[0];
+  const currentPin = lastBeacon[0]
+    ? lastBeacon[0]
+    : {
+        pin: 0,
+        pout: 0
+      };
 
   const nextBeacon = new Beacon({
     pin: currentPin.pin + 1,
-    pout: currentPout,
+    pout: currentPin.out,
     timestamp: new Date()
   });
 
@@ -33,7 +38,12 @@ async function enter() {
 
 async function leave() {
   const lastBeacon = await Beacon.find({ _id: -1 }).limit(1);
-  const currentPin = lastBeacon[0];
+  const currentPin = lastBeacon[0]
+    ? lastBeacon[0]
+    : {
+        pin: 0,
+        pout: 0
+      };
 
   const nextBeacon = new Beacon({
     pin: currentPin.pin,
