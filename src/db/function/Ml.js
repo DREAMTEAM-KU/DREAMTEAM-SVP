@@ -30,10 +30,24 @@ async function list() {
 
 async function findAndUpdate(data) {
   const lastest = await getSanam(1);
-  return await Ml.update(
-    { _id: lastest[0]._id },
-    { value: lastest[0].value + data.pin }
-  );
+  if (lastest.length > 0) {
+    return await Ml.update(
+      { _id: lastest[0]._id },
+      { value: lastest[0].value + data.pin }
+    );
+  } else {
+    const time = new Date();
+
+    const modifiedTime = new Date(
+      time.getFullYear(),
+      time.getMonth(),
+      time.getDate(),
+      time.getHours(),
+      0,
+      0
+    );
+    return await Ml.create({ time: modifiedTime, value: data.pin });
+  }
 }
 
 async function getSanam(hours = 0) {

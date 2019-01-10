@@ -1,3 +1,4 @@
+const moment = require("moment");
 const { main } = require("../logic/migrate/ml");
 const { list } = require("../db/function/Ml");
 const { getSanam } = require("../logic/ml");
@@ -16,7 +17,21 @@ router.get("/getSanam", async (req, res) => {
   const lists = await list();
   if (lists.length >= hours) {
     const data = await getSanam(parseInt(hours, 10));
-    const output = data.map(d => d.value);
+    console.log(data);
+    const output = [];
+    let out;
+    for (var i = 0; i < hours; i++) {
+      const xDate = moment().subtract(i, "hour");
+
+      const xDate2 = moment().subtract(i + 1, "hour");
+
+      out = data.filter(
+        d => moment(d.time).isBefore(xDate) && moment(d.time).isAfter(xDate2)
+      );
+
+      const outp = out[0] ? out[0].value : 0;
+      output.push(outp);
+    }
     const result = {
       number_of_tourist: output
     };
