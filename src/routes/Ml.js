@@ -1,9 +1,11 @@
+const { migrate } = require("../logic/ml");
+
 const express = require("express");
 
 const router = express.Router();
 
-router.post("/putSanam", async (req, res) => {
-  const data = await insertData(req.body);
+router.post("/migrate", async (req, res) => {
+  const data = await migrate(req.body);
   res.send();
 });
 

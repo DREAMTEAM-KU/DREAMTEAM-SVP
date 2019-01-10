@@ -1,36 +1,39 @@
 const Ml = require("../models/Ml");
 
-function insert(data) {
-  //   var date = new Date(data[0]);
+async function insert(data) {
+  // check duplicate time
+  const time = new Date(data.time);
 
-  data.splice(0, 1);
-  data.forEach((d, index) => {
-    add({
-      time: new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        index,
-        0,
-        0
-      ),
-      value: d
+  const modifiedTime = new Date(
+    time.getFullYear(),
+    time.getMonth(),
+    time.getDate(),
+    time.getHours(),
+    0,
+    0
+  );
+
+  const _Ml = await Ml.findOne({ time: modifiedTime })
+    .lean()
+    .exec();
+  if (_Ml) {
+    const oldValue = _Ml.value;
+    const result = await Ml.updateOne(
+      { _id: _Ml._id },
+      { value: oldValue + data.value }
+    );
+    return result;
+  } else {
+    const _ml = new Ml({
+      time: modifiedTime,
+      value: data.value,
+      timestamp: new Date()
     });
-  });
-  //
-  return ml;
-}
-
-function add(data) {
-  // append
-  const ml = new Ml({
-    ...data,
-    timestamp: new Date()
-  });
-  return ml;
+    const result = await _ml.save();
+    return result;
+  }
 }
 
 module.exports = {
-  insert,
-  add
+  insert
 };

@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
     }
   );
 } else {
-  mongoose.connect("mongodb://localhost/hwData");
+  mongoose.connect(process.env.DATABASE_URL);
 }
 
 var db = mongoose.connection;
