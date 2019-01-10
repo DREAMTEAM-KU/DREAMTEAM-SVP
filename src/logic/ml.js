@@ -29,7 +29,7 @@ async function migrate(data) {
 
   const results = [];
   for (var i = 0; i < value.length; i++) {
-    const date = new Date(ymd[0], ymd[1], ymd[2], i, 0, 0, 0);
+    const date = new Date(ymd[0], ymd[1] - 1, ymd[2], i, 0, 0, 0);
     const modified = {
       time: date,
       value: value[i]

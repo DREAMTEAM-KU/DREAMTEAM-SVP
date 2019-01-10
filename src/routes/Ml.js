@@ -21,7 +21,14 @@ router.get("/getSanam", async (req, res) => {
 });
 
 router.get("/predict", async (req, res) => {
-  res.send("/predict");
+  await axios
+    .get("http://localhost:4000/predict")
+    .then(response => {
+      res.send(response.data);
+    })
+    .catch(err => {
+      res.send("error");
+    });
 });
 
 module.exports = router;
