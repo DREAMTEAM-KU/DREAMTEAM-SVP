@@ -18,13 +18,14 @@ async function insert(data) {
     .exec();
   if (_Ml) {
     const oldValue = _Ml.value;
+    console.log("append", oldValue + data.value);
     const result = await Ml.updateOne(
       { _id: _Ml._id },
       { value: oldValue + data.value }
     );
     return result;
   } else {
-    console.log(value);
+    console.log(data.value);
     const _ml = new Ml({
       time: modifiedTime,
       value: data.value,
