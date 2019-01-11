@@ -12,7 +12,6 @@ router.get("/getSanam", async (req, res) => {
   const lists = await list();
   if (lists.length >= hours) {
     const data = await getSanam(parseInt(hours, 10));
-    console.log(data);
     const output = data.map(d => d.value);
     const result = {
       number_of_tourist: output
