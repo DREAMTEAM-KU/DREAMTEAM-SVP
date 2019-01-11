@@ -95,7 +95,7 @@ async function replyBeacon(reply_token, msg) {
       text = "Welcome";
     }
   } else {
-    text = "bye bye";
+    text = "";
   }
   replymsg = JSON.stringify({
     replyToken: reply_token,
