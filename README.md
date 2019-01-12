@@ -18,6 +18,11 @@ To Clean Data for ML please run ./autoTrigger.sh
 
 ## Day 1
 
+
+Day 1 last commit
+
+--- commit 55ca26876b8d4ba32f03301633b3f8ec23246f8e ---
+
 `1. สร้าง API ตามตารางต่อไปนี้ โดยแสดงผล API ทุก request ผ่าน POSTMAN (7 คะแนน)`
 
 | No. | API             | Method | Post Body   | Task                                                    | Points | Status |
@@ -33,6 +38,10 @@ To Clean Data for ML please run ./autoTrigger.sh
 `3. นำ code ที่ทำเสร็จแล้วขึ้นไปรันบน server ของ CAT ตาม account ของทีมได้ (2 คะแนน)`
 
 ## Day 2
+
+Day 2 last commit
+
+--- b795742a9366e79d7312e4d29119b6fb7ba1cf4f ---
 
 `1. ทำการสร้าง Database เพื่อบันทึกข้อมูลที่ได้รับมา โดยมีข้อกำหนดดังต่อไปนี้ ( 1 คะแนน )`
 
