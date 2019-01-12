@@ -8,6 +8,7 @@
 
 ``` npm start ```
 
+To Clean Data for ML please run ./autoTrigger.sh
 
 # Task Server Programming
 
@@ -44,3 +45,7 @@
 | 3   | /showData           | POST   | JSON String | เพิ่ม Data ซึ่งประกอบด้วย teamID และ temp 1 ชุด                                | 1      | Done   |
 | 4   | /editData/:teamID   | PUT    | JSON String | แก้ไข Temp ตาม teamID                                                          | 3      | Done   |
 | 5   | /deleteData/:teamID | DELETE | Empty       | ลบ Document ตาม teamID∏                                                        | 1      | Done   |
+
+## Day 3
+
+``` ใน folder materials ```
