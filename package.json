@@ -22,7 +22,7 @@
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
     "moment": "^2.23.0",
-    "mongoose": "^5.4.2",
+    "mongoose": "^5.7.5",
     "request": "^2.88.0"
   }
 }
